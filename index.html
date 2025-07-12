@@ -406,6 +406,12 @@
                             No path calculated yet
                         </div>
                     </div>
+                    <div class="mb-6">
+                        <div class="text-sm font-medium text-indigo-200 mb-2">Path Explored</div>
+                        <div id="path-explored" class="bg-slate-900/50 p-3 rounded-md text-sm text-gray-200 border border-slate-700">
+                            No nodes explored yet
+                        </div>
+                    </div>
                     <div>
                         <div class="text-sm font-medium text-indigo-200 mb-2">Algorithm Execution</div>
                         <div id="algorithm-steps" class="algorithm-steps p-3 rounded-md text-sm text-gray-300 overflow-auto max-h-40">
@@ -812,28 +818,37 @@
                 resultsDiv.classList.add('hidden');
                 clearHighlights();
                 algorithmStepsDiv.innerHTML = '';
-                
+                const pathExploredDiv = document.getElementById('path-explored');
+                pathExploredDiv.textContent = 'No nodes explored yet';
+
                 // Create adjacency list for Dijkstra's algorithm
                 const adjacencyList = {};
                 Object.keys(graph.nodes).forEach(node => {
                     adjacencyList[node] = [];
                 });
-                
+
                 graph.edges.forEach(edge => {
                     adjacencyList[edge.from].push({ node: edge.to, weight: edge.weight });
                     adjacencyList[edge.to].push({ node: edge.from, weight: edge.weight }); // Undirected graph
                 });
-                
-                // Run Dijkstra's algorithm with step logging
-                const { distances, previous, steps } = dijkstraWithSteps(adjacencyList, startId);
-                
+
+                // Run Dijkstra's algorithm with step logging and explored nodes
+                const { distances, previous, steps, explored } = dijkstraWithSteps(adjacencyList, startId);
+
                 // Display algorithm steps
                 steps.forEach(step => {
                     const stepDiv = document.createElement('div');
                     stepDiv.textContent = step;
                     algorithmStepsDiv.appendChild(stepDiv);
                 });
-                
+
+                // Display explored nodes
+                if (explored && explored.length > 0) {
+                    pathExploredDiv.textContent = explored.map(id => graph.nodes[id].name + ` (${id})`).join(' → ');
+                } else {
+                    pathExploredDiv.textContent = 'No nodes explored yet';
+                }
+
                 // Reconstruct path
                 const path = [];
                 let current = endId;
@@ -841,12 +856,12 @@
                     path.unshift(current);
                     current = previous[current];
                 }
-                
+
                 if (path.length < 2 || path[0] !== startId) {
                     algorithmStepsDiv.innerHTML += '\nNo path found from ' + startId + ' to ' + endId;
                     return;
                 }
-                
+
                 // Calculate total weight
                 let totalWeight = 0;
                 for (let i = 0; i < path.length - 1; i++) {
@@ -856,10 +871,10 @@
                     );
                     if (edge) totalWeight += edge.weight;
                 }
-                
+
                 // Visualize the path
                 visualizePath(path);
-                
+
                 // Display results
                 displayResults(path, totalWeight);
             }
@@ -869,28 +884,30 @@
                 const previous = {};
                 const steps = [];
                 const nodes = new PriorityQueue();
-                
+                const explored = [];
+
                 // Initialize distances
                 Object.keys(graph).forEach(node => {
                     distances[node] = node === start ? 0 : Infinity;
                     previous[node] = null;
                     nodes.enqueue(node, distances[node]);
                 });
-                
+
                 steps.push(`Initial state: All nodes set to distance ∞ except ${start} (0)`);
-                
+
                 while (!nodes.isEmpty()) {
                     const smallest = nodes.dequeue();
                     steps.push(`\nProcessing node ${smallest.val} (current distance: ${smallest.priority})`);
-                    
+                    explored.push(smallest.val);
+
                     if (smallest.priority === Infinity) {
                         steps.push('No more reachable nodes, stopping algorithm');
                         break;
                     }
-                    
+
                     for (const neighbor of graph[smallest.val]) {
                         const candidate = distances[smallest.val] + neighbor.weight;
-                        
+
                         if (candidate < distances[neighbor.node]) {
                             distances[neighbor.node] = candidate;
                             previous[neighbor.node] = smallest.val;
@@ -899,8 +916,8 @@
                         }
                     }
                 }
-                
-                return { distances, previous, steps };
+
+                return { distances, previous, steps, explored };
             }
             
             function visualizePath(path) {
