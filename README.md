@@ -82,15 +82,6 @@
 
 ---
 
-## 👨‍💻 Team
-
-- **Ashish Raj** (Developer)  
-- **Himanshu Raj** (Developer)  
-- **Ashish Kumar** (Developer)
-
-_See the Team section in the app for more details and contact info._
-
----
 
 ## 📖 Background
 
@@ -114,13 +105,5 @@ Contact the authors for integration or commercial use.
 
 ---
 
-## 📬 Contact
-
-For questions, feedback, or collaboration:
-
-- Email: [ashishrajstm2003@gmail.com](mailto:ashishrajstm2003@gmail.com)
-- GitHub: [himanshuraj108](https://github.com/himanshuraj108)
-
----
 
 _Optimize your routes. Save time, fuel, and effort!_
