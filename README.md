@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **Graph-Based Delivery Network Modeling:**  
   Visualizes delivery locations (restaurants, kitchens, distribution centers, hubs, customers) as nodes and routes as weighted edges.
@@ -34,13 +34,13 @@
 
 ---
 
-## 🖥️ Live Demo
+##  Live Demo
 
 > _[Add link here if deployed, e.g. GitHub Pages, Vercel, Netlify]_
 
 ---
 
-## 🛠️ Getting Started
+##  Getting Started
 
 1. **Clone the repository:**
    ```bash
@@ -54,7 +54,7 @@
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 /
@@ -65,7 +65,7 @@
 
 ---
 
-## ⚡ How It Works
+##  How It Works
 
 1. **Select** a starting location and a delivery destination.
 2. **Click “Calculate Optimal Path”.**
@@ -74,7 +74,7 @@
     - Path sequence, cost, length, and estimated time.
     - Step-by-step algorithm execution (great for learning!).
 
-### ✨ Technologies Used
+###  Technologies Used
 
 - **HTML5 & CSS3** (with [Tailwind CSS](https://tailwindcss.com/))
 - **Vanilla JavaScript** (no frameworks)
@@ -83,21 +83,21 @@
 ---
 
 
-## 📖 Background
+##  Background
 
 RouteOptima was developed as part of a Computer Science research project to demonstrate the practical application of graph algorithms in logistics.  
 By modeling delivery networks as graphs, the tool finds optimal paths considering various constraints, making it an educational resource and a practical prototype for logistics companies.
 
 ---
 
-## 📝 License
+##  License
 
 This project is for educational and demonstration purposes.  
 Contact the authors for integration or commercial use.
 
 ---
 
-## 🙌 Acknowledgements
+##  Acknowledgements
 
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Font Awesome](https://fontawesome.com/)
