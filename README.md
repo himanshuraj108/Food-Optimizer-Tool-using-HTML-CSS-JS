@@ -2,8 +2,6 @@
 
 **RouteOptima** is an interactive, visually rich web application designed to help food delivery and logistics services optimize routes using Dijkstra's algorithm. With an intuitive UI, real-time graph visualization, and step-by-step algorithm explanation, RouteOptima demonstrates how advanced graph algorithms can drive efficiency in real-world delivery networks.
 
-![RouteOptima Screenshot](screenshot.png) <!-- Add a screenshot if available -->
-
 ---
 
 ##  Features
